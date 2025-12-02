@@ -21,6 +21,10 @@ func (c *counter) Up() int64 {
 	return atomic.AddInt64(&realCounter, 1)
 }
 
+func (c *counter) Reset() int64 {
+	return atomic.SwapInt64(&realCounter, 0)
+}
+
 func New() *counter {
 	return &counter{}
 }
